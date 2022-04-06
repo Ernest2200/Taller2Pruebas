@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -65,6 +67,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false);
+
     }
 
     @Override
@@ -101,6 +104,7 @@ prueba = view.findViewById(R.id.btnprueba);
 
 
         firestore.collection("Cart"+userid).addSnapshotListener(new EventListener<QuerySnapshot>() {
+
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
@@ -111,6 +115,7 @@ prueba = view.findViewById(R.id.btnprueba);
 
                     int total = cart.getPrice();
 
+                    Bundle b = new Bundle();
                     savetotalprice.add(total);
 
 
@@ -127,20 +132,20 @@ prueba = view.findViewById(R.id.btnprueba);
 
 
                     displaytotalprice.setText(String.valueOf(totalprice));
-                    Intent intent = new Intent(getActivity(), PruebaDatos.class);
-                    Bundle b = new Bundle();
-                    b.putString("Total", String.valueOf(totalprice));
-                    intent.putExtras(b);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("amount", String.valueOf(totalprice));
+
 
                     prueba.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
+                            Navigation.findNavController(view).navigate(R.id.action_cartFragment_to_prruebaFragment, bundle);
 
-                            startActivity(intent);
+
                         }
                     });
-
                 }
 
 

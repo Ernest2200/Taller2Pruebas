@@ -30,6 +30,26 @@
         <action
             android:id="@+id/action_cartFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_prruebaFragment"
+            app:destination="@id/pruebafragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pruebafragment"
+        android:name="com.example.cartshop.PruebaFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_prueba" >
+        <action
+            android:id="@+id/action_pruebaFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+
+        <argument
+            android:name="Quantity"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/productsDetailFragment"
