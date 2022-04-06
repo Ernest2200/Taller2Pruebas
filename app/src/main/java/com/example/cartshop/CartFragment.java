@@ -1,5 +1,6 @@
 package com.example.cartshop;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,15 +43,16 @@ public class CartFragment extends Fragment {
     CartAdapter mAdapter;
 
     TextView displaytotalprice;
-    int totalprice = 0;
+    int totalprice = 0,totalprice2 = 0;
     NavController navController;
     FirebaseFirestore firestore;
     FirebaseAuth firebaseAuth;
     String userid;
 
     Button checkOut;
+    Button prueba;
     List<Integer> savetotalprice = new ArrayList<>();
-    public ArrayList<Integer> historytotalprice = new ArrayList<Integer>();
+
 
 
     public CartFragment() {
@@ -77,7 +79,7 @@ public class CartFragment extends Fragment {
         checkOut = view.findViewById(R.id.buttoncheckout);
         navController = Navigation.findNavController(view);
 
-
+prueba = view.findViewById(R.id.btnprueba);
         recyclerView = view.findViewById(R.id.recyclerviewcart);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new CartAdapter();
@@ -119,15 +121,29 @@ public class CartFragment extends Fragment {
                 }
 
                 for ( int i=0; i < savetotalprice.size(); i++) {
+
                     totalprice += Integer.parseInt(String.valueOf(savetotalprice.get(i)));
 
-                    displaytotalprice.setText(String.valueOf(totalprice));
-                    historytotalprice.add(totalprice);
 
+
+                    displaytotalprice.setText(String.valueOf(totalprice));
+                    Intent intent = new Intent(getActivity(), PruebaDatos.class);
+                    Bundle b = new Bundle();
+                    b.putString("Total", String.valueOf(totalprice));
+                    intent.putExtras(b);
+
+                    prueba.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            startActivity(intent);
+                        }
+                    });
 
                 }
 
-                System.out.println("Hola"+historytotalprice);
+
 
                 savetotalprice.clear();
 

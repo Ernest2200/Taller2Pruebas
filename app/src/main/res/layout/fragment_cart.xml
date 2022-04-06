@@ -35,14 +35,25 @@
 
 
     <Button
+        android:id="@+id/buttoncheckout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="60dp"
-        android:text="Check Out"
-        android:id="@+id/buttoncheckout"
-        android:layout_alignParentBottom="true"/>
+        android:text="Check Out" />
+
+    <Button
+        android:id="@+id/btnprueba"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="96dp"
+        android:text="Prueba" />
 
 
 </RelativeLayout>
